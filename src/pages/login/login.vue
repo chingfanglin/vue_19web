@@ -162,12 +162,11 @@ textarea:focus {
 </template>
 
 <script>
-import { md5, AlertPlugin } from 'vux'
+import { md5 } from 'vux'
 
 export default {
   components: {
-    md5,
-    AlertPlugin
+    md5
   },
   data () {
     return {
