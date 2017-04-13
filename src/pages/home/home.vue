@@ -3,16 +3,20 @@
     <div class="vux-demo">
 
       <h1> </h1>
-       <swiper :list="list" auto></swiper>
+      <swiper :list="list" auto></swiper>
     </div>
-    <group title="cell demo">
-      <cell title="Vux" value="Cool" is-link></cell>
+    <group title="">
+      <tab :line-width="2" active-color="#fc378c">
+        <tab-item :selected="demo2 === item" v-for="item in list2" @click="demo2 = item">{{item}}</tab-item>
+      </tab>
     </group>
+    		<footer-bar></footer-bar>
   </div>
 </template>
 
 <script>
-import { Group, Cell, Flexbox, FlexboxItem, Swiper } from 'vux'
+import { Group, Cell, Flexbox, FlexboxItem, Swiper, Tab, TabItem } from 'vux'
+import FooterBar from '../../components/footer.vue'
 
 export default {
   components: {
@@ -20,14 +24,15 @@ export default {
     Cell,
     Flexbox,
     FlexboxItem,
-    Swiper
+    Swiper,
+    Tab,
+    TabItem,
+    FooterBar
   },
   data () {
     return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
+      demo2: 'test2',
+      list2: ['test1', 'test2', 'test3', 'test4', 'test5'],
       msg: 'Hello World!',
       list: [{
         url: '',
