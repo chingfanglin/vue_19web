@@ -10,12 +10,14 @@
         <tab-item :selected="demo2 === item" v-for="item in list2" @click="demo2 = item">{{item}}</tab-item>
       </tab>
     </group>
-    		<footer-bar></footer-bar>
+    <hot-news></hot-news>
+    <footer-bar></footer-bar>
   </div>
 </template>
 
 <script>
 import { Group, Cell, Flexbox, FlexboxItem, Swiper, Tab, TabItem } from 'vux'
+import HotNews from '../../pages/home/hot_news.vue'
 import FooterBar from '../../components/footer.vue'
 
 export default {
@@ -27,6 +29,7 @@ export default {
     Swiper,
     Tab,
     TabItem,
+    HotNews,
     FooterBar
   },
   data () {
