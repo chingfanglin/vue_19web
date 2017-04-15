@@ -1,13 +1,113 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>vue_19web</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">     
-  </head>
-  <body>
-    <div id="app-box"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <title>vue_19web</title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="google-signin-client_id" content="235636347022-469gn45ksk95t6jrrcnsd3aa6p9ru5f1.apps.googleusercontent.com">
+  <style media="screen">
+    .abcRioButtonLightBlue {
+      width: 100% !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app-box"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+<script type="text/javascript">
+  function onSuccess(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // Th
+  }
+
+  function onFailure(error) {
+    console.log(error);
+  }
+
+  function renderButton() {
+    gapi.signin2.render('my-signin2', {
+      'scope': 'profile email',
+      'width': 240,
+      'height': 40,
+      'longtitle': false,
+      'theme': 'light',
+      'onsuccess': onSuccess,
+      'onfailure': onFailure
+    });
+  }
+
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      fb_login();
+    }
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId: '1769174903400749',
+      cookie: true, // enable cookies to allow the server to access
+      // the session
+      xfbml: true, // parse social plugins on this page
+      version: 'v2.8' // use graph api version 2.8
+    });
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  };
+
+  function fb_login() {
+    FB.login(function(response) {
+
+      if (response.authResponse) {
+        console.log('Welcome!  Fetching your information.... ');
+        //console.log(response); // dump complete info
+        access_token = response.authResponse.accessToken; //get access token
+        user_id = response.authResponse.userID; //get FB UID
+
+        FB.api('/me', {
+          fields: 'id,name,gender,email'
+        }, function(response) {
+          console.log('ID: ' + response.id); // Do not send to your backend! Use an ID token instead.
+          console.log('Name: ' + response.name);
+          console.log('gender: ' + response.gender); // Do not send to your backend! Use an ID token instead.
+          console.log('email: ' + response.email);
+        });
+
+      } else {
+        //user hit cancel button
+        console.log('User cancelled login or did not fully authorize.');
+      }
+    });
+  }
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+</script>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
 </html>

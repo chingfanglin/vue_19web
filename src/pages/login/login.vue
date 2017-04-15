@@ -1,3 +1,78 @@
+
+<template>
+          <div class="db_login">
+              <div class="db_login_top">
+                  <a class="cancel" href="#/reg">註冊</a> 登入好好租
+              </div>
+              <div class="db_login_form">
+                  <p class="form_item">
+                      <input type="text" class="text" id="username" name="username" placeholder="帳號">
+                  </p>
+                  <p class="form_item">
+                      <input type="password" class="text" id="pasword" name="pasword" placeholder="密碼" >
+                  </p>
+                  <p class="form_btn">
+                      <button type="submit" @click="Login">登入</button>
+                  </p>
+              </div>
+              <div class="hr-or">
+                  <span class="other-login">
+          		    使用其它方式登入 & 找回密碼
+          		  </span>
+              </div>
+              <div class="db_login_form" onclick="fb_login();">
+                  <p class="form_btn fb_btn">
+                      <button type="submit">Facebook</button>
+                  </p>
+              </div>
+              <div class="db_login_form" name="googleSignIn" id="googleSignIn">
+                  <div id="my-signin2"></div>
+              </div>
+          </div>
+
+</template>
+
+<script>
+import { md5 } from 'vux'
+
+export default {
+  components: {
+    md5
+  },
+  data () {
+    return {
+    }
+  },
+  methods: {
+    Login () {
+      const username = document.getElementById('username').value
+      const pass = document.getElementById('pasword').value
+      if (!username || !pass) {
+        this.$vux.alert.show({
+          title: '提示訊息',
+          content: '請輸入帳號密碼!!'
+        })
+        return
+      }
+      const user = {
+        name: username,
+        password: md5(pass)
+      }
+      this.$vux.loading.show({
+        text: 'Loading'
+      })
+      console.log(user)
+      setTimeout(() => {
+        this.$vux.loading.hide()
+        this.$router.push({
+          'path': '/home'
+        })
+      }, 1950)
+    }
+  }
+}
+</script>
+
 <style scoped>
 .db_login {
   font-size: 16px;
@@ -126,84 +201,3 @@ textarea:focus {
   -webkit-background-clip: padding-box;
 }
 </style>
-
-<template>
-          <div class="db_login">
-              <div class="db_login_top">
-                  <a class="cancel" href="#/reg">註冊</a> 登入好好租
-              </div>
-              <div class="db_login_form">
-                  <p class="form_item">
-                      <input type="text" class="text" id="username" name="username" placeholder="帳號">
-                  </p>
-                  <p class="form_item">
-                      <input type="password" class="text" id="pasword" name="pasword" placeholder="密碼" >
-                  </p>
-                  <p class="form_btn">
-                      <button type="submit" @click="Login">登入</button>
-                  </p>
-              </div>
-              <div class="hr-or">
-                  <span class="other-login">
-          		    使用其它方式登入 & 找回密碼
-          		  </span>
-              </div>
-              <div class="db_login_form" onclick="fb_login();">
-                  <p class="form_btn fb_btn">
-                      <button type="submit">Facebook</button>
-                  </p>
-              </div>
-              <div class="db_login_form" name="googleSignIn" id="googleSignIn">
-                  <div id="my-signin2"></div>
-              </div>
-
-          </div>
-
-</template>
-
-<script>
-import { md5 } from 'vux'
-
-export default {
-  components: {
-    md5
-  },
-  data () {
-    return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
-      msg: 'Hello World!'
-    }
-  },
-  methods: {
-    Login () {
-      const username = document.getElementById('username').value
-      const pass = document.getElementById('pasword').value
-      if (!username || !pass) {
-        this.$vux.alert.show({
-          title: '提示訊息',
-          content: '請輸入帳號密碼!!'
-        })
-        return
-      }
-      const user = {
-        name: username,
-        password: md5(pass)
-      }
-
-      this.$vux.loading.show({
-        text: 'Loading'
-      })
-      console.log(user)
-      setTimeout(() => {
-        this.$vux.loading.hide()
-        this.$router.push({
-          'path': '/home'
-        })
-      }, 1950)
-    }
-  }
-}
-</script>
