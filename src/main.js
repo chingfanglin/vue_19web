@@ -7,6 +7,9 @@ import App from './App'
 import Login from './pages/login/login'
 import Registers from './pages/registers/registers'
 import Home from './pages/home/home'
+import House from './pages/house/house'
+import Account from './pages/account/account'
+import My from './pages/my/my'
 import { AlertPlugin, LoadingPlugin } from 'vux'
 
 Vue.use(VueRouter)
@@ -31,6 +34,21 @@ const routes = [{
   path: '/home',
   name: 'home',
   component: Home
+},
+{
+  path: '/house',
+  name: 'house',
+  component: House
+},
+{
+  path: '/account',
+  name: 'account',
+  component: Account
+},
+{
+  path: '/my',
+  name: 'my',
+  component: My
 }]
 
 const router = new VueRouter({
