@@ -9,20 +9,14 @@
 </template>
 
 <script>
-import { Group, Cell, Flexbox, FlexboxItem, Swiper, Tab, TabItem } from 'vux'
+import { Swiper } from 'vux'
 import HotNews from '../../pages/home/hot_news.vue'
 import HeaderBar from '../../components/header.vue'
 import FooterBar from '../../components/footer.vue'
 
 export default {
   components: {
-    Group,
-    Cell,
-    Flexbox,
-    FlexboxItem,
     Swiper,
-    Tab,
-    TabItem,
     HotNews,
     HeaderBar,
     FooterBar

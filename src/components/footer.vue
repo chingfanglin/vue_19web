@@ -1,5 +1,4 @@
 <template>
-  <div>
     <tabbar>
       <tabbar-item  :selected="'/home' === this.$route.path" link="/home">
         <i slot="icon" class="fa fa-home" aria-hidden="true"></i>
@@ -18,7 +17,6 @@
         <span slot="label">我的</span>
       </tabbar-item>
     </tabbar>
-  </div>
 </template>
 <script>
 import { Tabbar, TabbarItem } from 'vux'
