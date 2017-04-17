@@ -3,8 +3,8 @@
     <header-bar></header-bar>
       <swiper :list="list" auto style="margin:0 auto;" height="130px" dots-class="custom-bottom"
       dots-position="right"></swiper>
-    <hot-news></hot-news>
-    <footer-bar></footer-bar>
+      <hot-news></hot-news>
+      <footer-bar></footer-bar>
   </div>
 </template>
 
