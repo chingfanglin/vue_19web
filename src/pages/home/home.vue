@@ -10,11 +10,23 @@
 
 <script>
 import { Swiper } from 'vux'
+import { mapState, mapActions } from 'vuex'
 import HotNews from '../../pages/home/hot_news.vue'
 import HeaderBar from '../../components/header.vue'
 import FooterBar from '../../components/footer.vue'
 
 export default {
+  computed: {
+    ...mapState([
+      'sliders'
+    ])
+  },
+  mounted () {
+    this.getSliders()
+  },
+  methods: {
+    ...mapActions(['getSliders'])
+  },
   components: {
     Swiper,
     HotNews,
