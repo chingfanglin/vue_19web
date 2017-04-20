@@ -1,5 +1,5 @@
 <template>
-  <div style="test">
+  <div>
     <header-bar></header-bar>
       <div>
         <group-title></group-title>
@@ -30,7 +30,7 @@ export default {
   data () {
     return {
       categorys: [
-        {text: '房間', url: '#/home', class_name: 'fa fa-id-badge fa-2x'},
+        {text: '房間', url: '#/room', class_name: 'fa fa-id-badge fa-2x'},
         {text: '房客', url: 'javascript:void 0', class_name: 'fa fa-address-card-o fa-2x'},
         {text: '訊息', url: 'javascript:void 0', class_name: 'fa fa-envelope-open-o fa-2x'},
         {text: '提醒設定', url: 'javascript:void 0', class_name: 'fa fa-university fa-2x'},

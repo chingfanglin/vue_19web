@@ -3,7 +3,7 @@
 <template>
   <div>
     <x-header :left-options="{showBack: showBackButton}" style="background-color:#46A3FF;">
-      <span class="db_logo_text">{{title}}</span>
+      <span class="db_logo_text" v-if="!showBackButton">{{title}}</span>
     </x-header>
   </div>
 </template>
