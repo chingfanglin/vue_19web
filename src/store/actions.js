@@ -40,5 +40,51 @@ export default {
         commit(types.GET_SLIDERS, response.data.list)
       }
     })
+  },
+  getRooms({
+    commit,
+    state
+  }) {
+    let mock = new MockAdapter(axios)
+    mock.onGet('/roomlist').reply(200, {
+      "code": "0",
+      "message": "請求成功！",
+      "list": [{
+        "id": 1,
+        "floor": 1,
+        "room_no": 1,
+        "tenant": "林書豪",
+        "expiry_date": "2017/11/12"
+      }, {
+        "id": 2,
+        "floor": 1,
+        "room_no": 2,
+        "tenant": "川普",
+        "expiry_date": "2017/05/12"
+      }, {
+        "id": 3,
+        "floor": 1,
+        "room_no": 3,
+        "tenant": "金城武",
+        "expiry_date": "2017/05/12"
+      }, {
+        "id": 4,
+        "floor": 2,
+        "room_no": 1,
+        "tenant": "林志玲",
+        "expiry_date": "2017/05/12"
+      }, {
+        "id": 5,
+        "floor": 2,
+        "room_no": 2,
+        "tenant": "漩渦鳴人",
+        "expiry_date": "2017/05/12"
+      }]
+    })
+    axios.get('/roomlist').then(response => {
+      if (response.data.list) {
+        commit(types.GET_ROOMS, response.data.list)
+      }
+    })
   }
 }

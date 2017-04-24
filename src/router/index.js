@@ -4,6 +4,7 @@ import Login from '@/pages/login/login'
 import Registers from '@/pages/registers/registers'
 import Home from '@/pages/home/home'
 import House from '@/pages/house/house'
+import Rooms from '@/pages/house/rooms'
 import Room from '@/pages/house/room'
 import Account from '@/pages/account/account'
 import My from '@/pages/my/my'
@@ -37,7 +38,12 @@ export default new Router({
     component: House
   },
   {
-    path: '/room',
+    path: '/rooms',
+    name: 'rooms',
+    component: Rooms
+  },
+  {
+    path: '/room/:id',
     name: 'room',
     component: Room
   },

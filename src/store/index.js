@@ -9,7 +9,8 @@ Vue.use(Vuex)
 const state = {
   isLogin: false,
   userInfo: [],
-  sliders: []
+  sliders: [],
+  rooms: []
 }
 
 export default new Vuex.Store({
