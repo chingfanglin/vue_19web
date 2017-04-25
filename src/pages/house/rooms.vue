@@ -29,8 +29,8 @@
             <div class="box2">
                 <swipeout-item v-for="room in rooms" :threshold=".5" underlay-color="#ccc">
                     <div slot="right-menu">
-                        <swipeout-button @click.native="onButtonClick('delete',room.id)" background-color="#FFAA33">退租</swipeout-button>
-                        <swipeout-button @click.native="onButtonClick('fav',room.id)" background-color="#336DD6">修改</swipeout-button>
+                        <swipeout-button @click.native="onButtonClick('tenancy',room.id)" background-color="#FFAA33">退租</swipeout-button>
+                        <swipeout-button @click.native="onButtonClick('modify',room.id)" background-color="#336DD6">修改</swipeout-button>
                         <swipeout-button @click.native="onButtonClick('delete',room.id)" background-color="#D23934">刪除</swipeout-button>
                     </div>
                     <div slot="content" class="demo-content vux-1px-tb">
@@ -54,6 +54,8 @@
             </div>
         </scroller>
     </group>
+    <actionsheet v-model="show" :menus="menus" @on-click-menu="click" show-cancel></actionsheet>
+    <actionsheet v-model="show1" :menus="menus1" @on-click-menu="click" show-cancel></actionsheet>
     <footer-bar></footer-bar>
 </div>
 
@@ -62,8 +64,8 @@
 <script>
 
 import {
-    Grid, GridItem, GroupTitle, Group, Swipeout, SwipeoutItem, SwipeoutButton, Cell,
-    Flexbox, FlexboxItem, Divider, XButton, Scroller, CellBox
+    Group, Swipeout, SwipeoutItem, SwipeoutButton, Cell,
+    Flexbox, FlexboxItem, Scroller, Actionsheet
 }
 from 'vux'
 import {
@@ -78,19 +80,14 @@ export default {
         HeaderBar,
         FooterBar,
         Cell,
-        Grid,
-        GridItem,
-        GroupTitle,
         Group,
         Swipeout,
         SwipeoutItem,
         SwipeoutButton,
         Flexbox,
         FlexboxItem,
-        Divider,
-        XButton,
         Scroller,
-        CellBox
+        Actionsheet
     },
     computed: {
         ...mapState([
@@ -105,11 +102,21 @@ export default {
     },
     methods: {
         ...mapActions(['getRooms']),
-
             onButtonClick(type, id) {
-                this.$router.push({
-                    'path': '/room/' + id
-                })
+                switch (type) {
+                    case 'tenancy':
+                        this.show = true;
+                        break;
+                    case 'modify':
+                        this.$router.push({
+                            'path': '/room/' + id
+                        })
+                        break;
+                    case 'delete':
+                        this.show1 = true;
+                        break;
+                    default:
+                }
             },
             handleEvents(type) {
                 console.log('event: ', type)
@@ -119,9 +126,26 @@ export default {
                     this.$refs.scroller.donePulldown()
                 }, 2000)
             },
-            data() {
-                return {}
+            click(key) {
+                console.log(key)
+            },
+            onDelete() {
+                this.showSuccess = true
             }
+    },
+    data() {
+        return {
+            show: false,
+            menus: {
+                'title.noop': '你確定嗎?<br/><span style="color:#666;font-size:12px;">退租後無法再撤銷.</span>',
+                tenancy: '<span style="color:red">退租</span>'
+            },
+            show1: false,
+            menus1: {
+                'title.noop': '你確定嗎?<br/><span style="color:#666;font-size:12px;">刪除後無法再撤銷.</span>',
+                delete: '<span style="color:red">刪除</span>'
+            }
+        }
     }
 }
 
