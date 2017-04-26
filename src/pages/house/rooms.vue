@@ -53,10 +53,14 @@
                 </swipeout-item>
             </div>
         </scroller>
+
     </group>
+    <tabbar>
+        <x-button :text="submit001" @click.native="processButton001" type="primary"></x-button>
+    </tabbar>
     <actionsheet v-model="show" :menus="menus" @on-click-menu="click" show-cancel></actionsheet>
     <actionsheet v-model="show1" :menus="menus1" @on-click-menu="click" show-cancel></actionsheet>
-    <footer-bar></footer-bar>
+
 </div>
 
 </template>
@@ -65,7 +69,7 @@
 
 import {
     Group, Swipeout, SwipeoutItem, SwipeoutButton, Cell,
-    Flexbox, FlexboxItem, Scroller, Actionsheet
+    Flexbox, FlexboxItem, Scroller, Actionsheet, Tabbar, XButton
 }
 from 'vux'
 import {
@@ -73,12 +77,10 @@ import {
 }
 from 'vuex'
 import HeaderBar from '../../components/header.vue'
-import FooterBar from '../../components/footer.vue'
 
 export default {
     components: {
         HeaderBar,
-        FooterBar,
         Cell,
         Group,
         Swipeout,
@@ -87,7 +89,9 @@ export default {
         Flexbox,
         FlexboxItem,
         Scroller,
-        Actionsheet
+        Actionsheet,
+        Tabbar,
+        XButton
     },
     computed: {
         ...mapState([
@@ -131,6 +135,11 @@ export default {
             },
             onDelete() {
                 this.showSuccess = true
+            },
+            processButton001() {
+                this.$router.push({
+                    'path': '#'
+                })
             }
     },
     data() {
@@ -144,7 +153,8 @@ export default {
             menus1: {
                 'title.noop': '你確定嗎?<br/><span style="color:#666;font-size:12px;">刪除後無法再撤銷.</span>',
                 delete: '<span style="color:red">刪除</span>'
-            }
+            },
+            submit001: '新增'
         }
     }
 }
