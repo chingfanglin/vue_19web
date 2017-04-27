@@ -8,12 +8,22 @@ import router from './router'
 import store from './store/'
 import { AlertPlugin, LoadingPlugin } from 'vux'
 
+
+
 Vue.use(VueRouter)
 Vue.use(AlertPlugin)
 Vue.use(LoadingPlugin)
 
 FastClick.attach(document.body)
 Vue.config.productionTip = false
+
+router.beforeEach((to, from, next) => {
+next();
+})
+
+router.afterEach(function (to) {
+  store.commit('IS_USERDETAILS',false)
+})
 
 /* eslint-disable no-new */
 new Vue({

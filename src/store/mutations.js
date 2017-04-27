@@ -1,5 +1,6 @@
 import {
   IS_LOGIN,
+  IS_USERDETAILS,
   GET_USERINFO,
   GET_SLIDERS,
   GET_ROOMS
@@ -8,6 +9,9 @@ import {
 export default {
   [IS_LOGIN] (state, bool) {
     state.isLogin = bool
+  },
+  [IS_USERDETAILS] (state, bool) {
+    state.isUserDetails = bool
   },
   [GET_USERINFO] (state, list) {
     state.userInfo = list

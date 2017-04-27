@@ -43,6 +43,11 @@ export default new Router({
     component: Rooms
   },
   {
+    path: '/room',
+    name: 'room',
+    component: Room
+  },
+  {
     path: '/room/:id',
     name: 'room',
     component: Room

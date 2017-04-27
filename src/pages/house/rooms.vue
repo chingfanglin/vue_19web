@@ -138,12 +138,17 @@ export default {
             },
             processButton001() {
                 this.$router.push({
-                    'path': '#'
+                    'path': '/room'
                 })
             }
     },
     data() {
         return {
+            asdsadad: function() {
+                debugger
+                  console.log('1232313')
+            },
+
             show: false,
             menus: {
                 'title.noop': '你確定嗎?<br/><span style="color:#666;font-size:12px;">退租後無法再撤銷.</span>',

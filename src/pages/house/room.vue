@@ -23,7 +23,7 @@
 <div>
     <header-bar :showBackButton="true"></header-bar>
     <group>
-        <x-input title="名稱" name="username" placeholder="7號 雅舍小築" is-type="china-name"></x-input>
+        <x-input title="名稱" name="roomname" placeholder="7號 雅舍小築" is-type="china-name"></x-input>
         <x-input title="詳細地址" name="address" is-type="china-name"></x-input>
         <cell>
             <checker v-model="Property" default-item-class="Property-item" selected-item-class="Property-item-selected">
@@ -31,6 +31,7 @@
 
             </checker>
         </cell>
+        <x-input title="房客" name="username"  is-type="china-name"></x-input>
         <x-input title="銀行代碼" type="text" placeholder="" v-model="code" :max="6"></x-input>
         <x-input title="帳號" type="text" placeholder="" v-model="account" :max="12"></x-input>
         <x-input title="共同管理人ID" placeholder="" v-model="jointly"></x-input>
