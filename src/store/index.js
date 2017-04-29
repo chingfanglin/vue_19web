@@ -10,6 +10,7 @@ const state = {
   isLogin: false,
   userInfo: [],
   sliders: [],
+  houses: [],
   rooms: []
 }
 

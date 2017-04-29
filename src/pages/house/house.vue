@@ -52,7 +52,7 @@ span {
     <div>
         <group-title></group-title>
         <grid>
-            <grid-item  v-for="cty in categorys" @click.native="processButton(cty.url)">
+            <grid-item v-for="cty in categorys" @click.native="processButton(cty.url)">
                 <i slot="icon" :class="cty.class_name" aria-hidden="true"></i>
                 <span slot="label">{{cty.text }}</span>
             </grid-item>
@@ -64,6 +64,7 @@ span {
 </template>
 
 <script>
+
 import HeaderBar from '../../components/header.vue'
 import FooterBar from '../../components/footer.vue'
 import {
@@ -90,28 +91,27 @@ export default {
     },
     methods: {
         processButton(url) {
-          if(this.isUserDetails)
-          {
-            this.$vux.alert.show({
-              title: '提示訊息',
-              content: '請填寫詳細資料才可正常使用功能'
-            })
-            return
-          }
-          if(url){
-            this.$router.push({
-              'path': url
-            })
-          }
-          return false;
+            if (this.isUserDetails) {
+                this.$vux.alert.show({
+                    title: '提示訊息',
+                    content: '請填寫詳細資料才可正常使用功能'
+                })
+                return
+            }
+            if (url) {
+                this.$router.push({
+                    'path': url
+                })
+            }
+            return false;
         }
     },
     data() {
         return {
             categorys: [{
-                text: '房間',
-                url: '/rooms',
-                class_name: 'fa fa-id-badge fa-2x'
+                text: '房屋',
+                url: '/house/houses',
+                class_name: 'fa  fa-bed fa-2x'
             }, {
                 text: '房客',
                 url: '',

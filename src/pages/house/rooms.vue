@@ -29,7 +29,9 @@
             <div class="box2">
                 <swipeout-item v-for="room in rooms" :threshold=".5" underlay-color="#ccc">
                     <div slot="right-menu">
-                        <swipeout-button @click.native="onButtonClick('tenancy',room.id)" background-color="#FFAA33">退租</swipeout-button>
+                        <swipeout-button v-if="room.tenant === ''" @click.native="onButtonClick('tenancy',room.id)" background-color="#00BB00">出租</swipeout-button>
+                        <swipeout-button v-else @click.native="onButtonClick('tenancy',room.id)" background-color="#FFAA33">退租</swipeout-button>
+
                         <swipeout-button @click.native="onButtonClick('modify',room.id)" background-color="#336DD6">修改</swipeout-button>
                         <swipeout-button @click.native="onButtonClick('delete',room.id)" background-color="#D23934">刪除</swipeout-button>
                     </div>
@@ -144,11 +146,6 @@ export default {
     },
     data() {
         return {
-            asdsadad: function() {
-                debugger
-                  console.log('1232313')
-            },
-
             show: false,
             menus: {
                 'title.noop': '你確定嗎?<br/><span style="color:#666;font-size:12px;">退租後無法再撤銷.</span>',
