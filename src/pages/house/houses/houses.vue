@@ -11,7 +11,7 @@ span {
 <div>
     <header-bar :showBackButton="true"></header-bar>
     <group label-width="4.5em" label-margin-right="2em" label-align="right">
-        <scroller lock-x scrollbar-y :scrollbarY="false" use-pulldown @on-pulldown-loading="load" enable-horizontal-swiping ref="scroller" :height="-145+'px'">
+        <scroller lock-x scrollbar-y :scrollbarY="false" use-pulldown @on-pulldown-loading="load" enable-horizontal-swiping ref="scroller" :height="-115+'px'">
             <div class="box2">
                 <checklist v-if="isDel" :title="'確認刪除後無法還原'" :options="objectList" v-model="objectListValue" @on-change="change"></checklist>
                 <div v-else slot="content" v-for="house in houses" class="demo-content vux-1px-tb">
@@ -20,12 +20,18 @@ span {
             </div>
         </scroller>
     </group>
-    <tabbar>
-        <tabbar-item v-if="isDel">
+    <tabbar v-if="isDel">
+        <tabbar-item>
             <i slot="icon" class="fa fa-reply fa-4x" aria-hidden="true" v-on:click="cancelButton"></i>
             <span slot="label">取消</span>
         </tabbar-item>
-        <tabbar-item v-else>
+        <tabbar-item>
+            <i slot="icon" class="fa fa-trash fa-4x" aria-hidden="true" v-on:click="checkDel"></i>
+            <span slot="label">刪除房屋</span>
+        </tabbar-item>
+    </tabbar>
+    <tabbar v-else>
+        <tabbar-item>
             <i slot="icon" class="fa fa-plus fa-4x" aria-hidden="true" v-on:click="addButton"></i>
             <span slot="label">新增房屋</span>
         </tabbar-item>
@@ -34,6 +40,7 @@ span {
             <span slot="label">刪除房屋</span>
         </tabbar-item>
     </tabbar>
+    <actionsheet v-model="show1" :menus="menus1" @on-click-menu="click" show-cancel></actionsheet>
 </div>
 
 </template>
@@ -41,7 +48,7 @@ span {
 <script>
 
 import {
-    Group, Cell, Scroller, Tabbar, TabbarItem, XButton, Checklist
+    Group, Cell, Scroller, Tabbar, TabbarItem, XButton, Checklist, Actionsheet
 }
 from 'vux'
 
@@ -61,7 +68,8 @@ export default {
         Tabbar,
         TabbarItem,
         XButton,
-        Checklist
+        Checklist,
+        Actionsheet
     },
     computed: {
         ...mapState([
@@ -83,7 +91,7 @@ export default {
             },
             addButton() {
                 this.$router.push({
-                    'path': '/room'
+                    'path': '/house/housedetail'
                 })
             },
             cancelButton() {
@@ -102,6 +110,12 @@ export default {
                 }
                 this.isDel = true
             },
+            click(key) {
+                console.log(key)
+            },
+            checkDel() {
+                this.show1 = true;
+            },
             change(val) {
                 console.log('change', val)
             }
@@ -111,6 +125,11 @@ export default {
             isDel: false,
             objectList: [],
             objectListValue: [],
+            show1: false,
+            menus1: {
+                'title.noop': '你確定嗎?<br/><span style="color:#666;font-size:12px;">刪除後無法再撤銷.</span>',
+                delete: '<span style="color:red">刪除</span>'
+            }
         }
     }
 }
