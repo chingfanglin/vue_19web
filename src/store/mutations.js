@@ -4,7 +4,9 @@ import {
   GET_USERINFO,
   GET_SLIDERS,
   GET_HOUSES,
-  GET_ROOMS
+  GET_HOUSEID,
+  GET_ROOMS,
+  GET_ROOMID
 } from './mutation-types.js'
 
 export default {
@@ -23,7 +25,13 @@ export default {
   [GET_HOUSES] (state, list) {
     state.houses = list
   },
+  [GET_HOUSEID] (state, int) {
+    state.houseid = int
+  },
   [GET_ROOMS] (state, list) {
     state.rooms = list
+  },
+  [GET_ROOMID] (state, int) {
+    state.roomid = int
   }
 }

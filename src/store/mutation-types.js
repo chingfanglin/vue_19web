@@ -8,4 +8,8 @@ export const GET_SLIDERS = 'GET_SLIDERS'
 
 export const GET_HOUSES = 'GET_HOUSES'
 
+export const GET_HOUSEID = 'GET_HOUSEID'
+
 export const GET_ROOMS = 'GET_ROOMS'
+
+export const GET_ROOMID = 'GET_ROOMID'

@@ -3,12 +3,11 @@ import Router from 'vue-router'
 import Login from '@/pages/login/login'
 import Registers from '@/pages/registers/registers'
 import Home from '@/pages/home/home'
-import House from '@/pages/house/house'
-import Houses from '@/pages/house/houses/houses'
-import HouseDetail from '@/pages/house/houses/house_detail'
-
-import Rooms from '@/pages/house/rooms'
-import Room from '@/pages/house/room'
+import Category from '@/pages/category/category'
+import Housepage from '@/pages/category/houses/house'
+import Houses from '@/pages/category/houses/houses'
+import HouseDetail from '@/pages/category/houses/house_detail'
+import RoomDetail from '@/pages/category/rooms/room_detail'
 import Account from '@/pages/account/account'
 import My from '@/pages/my/my'
 
@@ -36,9 +35,9 @@ export default new Router({
     component: Home
   },
   {
-    path: '/house',
-    name: 'house',
-    component: House
+    path: '/category',
+    name: 'category',
+    component: Category
   },
   {
     path: '/house/houses',
@@ -52,24 +51,24 @@ export default new Router({
   },
 
   {
-    path: '/rooms',
-    name: 'rooms',
-    component: Rooms
+    path: '/housepage',
+    name: 'housepage',
+    component: Housepage
   },
   {
-    path: '/rooms/:id',
-    name: 'rooms',
-    component: Rooms
+    path: '/housepage/:id',
+    name: 'housepage',
+    component: Housepage
   },
   {
-    path: '/room',
-    name: 'room',
-    component: Room
+    path: '/roomdetail',
+    name: 'roomdetail',
+    component: RoomDetail
   },
   {
-    path: '/room/:id',
-    name: 'room',
-    component: Room
+    path: '/roomdetail/:id',
+    name: 'roomdetail',
+    component: RoomDetail
   },
   {
     path: '/account',

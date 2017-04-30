@@ -1,5 +1,21 @@
 <style scoped>
 
+.Property-item {
+    width: 100px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    margin-right: 6px;
+}
+
+.Property-item-selected {
+    background: #ffffff no-repeat right bottom;
+    border-color: #ff4a00;
+}
+
 span {
     font-size: 12px;
 }
