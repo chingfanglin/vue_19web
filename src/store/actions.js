@@ -86,42 +86,36 @@ export default {
         "floor": 1,
         "room_no": 1,
         "tenant": "林書豪",
-        "start_date": "2011/09/07",
         "expiry_date": "2017/11/12"
       }, {
         "id": 2,
         "floor": 1,
         "room_no": 2,
         "tenant": "川普",
-        "start_date": "2015/04/02",
         "expiry_date": "2017/05/12"
       }, {
         "id": 3,
         "floor": 1,
         "room_no": 3,
         "tenant": "金城武",
-        "start_date": "2011/01/27",
         "expiry_date": "2017/05/12"
       }, {
         "id": 4,
         "floor": 2,
         "room_no": 1,
         "tenant": "林志玲",
-        "start_date": "2013/11/12",
         "expiry_date": "2017/05/12"
       }, {
         "id": 5,
         "floor": 2,
         "room_no": 2,
         "tenant": "漩渦鳴人",
-        "start_date": "2013/09/22",
         "expiry_date": "2017/05/12"
       }, {
         "id": 6,
         "floor": 3,
         "room_no": 1,
         "tenant": "",
-        "start_date": "",
         "expiry_date": ""
       }]
     })

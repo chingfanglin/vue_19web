@@ -5,8 +5,6 @@ import Registers from '@/pages/registers/registers'
 import Home from '@/pages/home/home'
 import House from '@/pages/house/house'
 import Houses from '@/pages/house/houses/houses'
-import HouseDetail from '@/pages/house/houses/house_detail'
-
 import Rooms from '@/pages/house/rooms'
 import Room from '@/pages/house/room'
 import Account from '@/pages/account/account'
@@ -45,12 +43,6 @@ export default new Router({
     name: 'houses',
     component: Houses
   },
-  {
-    path: '/house/housedetail',
-    name: 'houseDetail',
-    component: HouseDetail
-  },
-
   {
     path: '/rooms',
     name: 'rooms',
