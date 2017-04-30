@@ -11,58 +11,42 @@
 <div>
     <header-bar :showBackButton="true"></header-bar>
     <group label-width="4.5em" label-margin-right="2em" label-align="right">
-        <flexbox :gutter="0" wrap="wrap">
-            <flexbox-item :span="1/4">
-                <div class="flex-text">樓層</div>
-            </flexbox-item>
-            <flexbox-item :span="1/4">
-                <div class="flex-text">房號</div>
-            </flexbox-item>
-            <flexbox-item :span="1/4">
-                <div class="flex-text">房客</div>
-            </flexbox-item>
-            <flexbox-item :span="1/4">
-                <div class="flex-text">到期日</div>
-            </flexbox-item>
-        </flexbox>
-        <scroller lock-x scrollbar-y :scrollbarY="false" use-pulldown @on-pulldown-loading="load" enable-horizontal-swiping ref="scroller" :height="-145+'px'">
+        <scroller lock-x scrollbar-y :scrollbarY="false" use-pulldown @on-pulldown-loading="load" enable-horizontal-swiping ref="scroller" :height="-115+'px'">
             <div class="box2">
-                <swipeout-item v-for="room in rooms" :threshold=".5" underlay-color="#ccc">
-                    <div slot="right-menu">
-                        <swipeout-button v-if="room.tenant === ''" @click.native="onButtonClick('tenancy',room.id)" background-color="#00BB00">出租</swipeout-button>
-                        <swipeout-button v-else @click.native="onButtonClick('tenancy',room.id)" background-color="#FFAA33">退租</swipeout-button>
-
-                        <swipeout-button @click.native="onButtonClick('modify',room.id)" background-color="#336DD6">修改</swipeout-button>
-                        <swipeout-button @click.native="onButtonClick('delete',room.id)" background-color="#D23934">刪除</swipeout-button>
-                    </div>
-                    <div slot="content" class="demo-content vux-1px-tb">
-                        <cell></cell>
-                        <flexbox :gutter="0" wrap="wrap">
-                            <flexbox-item :span="1/4">
-                                <div class="flex-text">{{room.floor}}</div>
-                            </flexbox-item>
-                            <flexbox-item :span="1/4">
-                                <div class="flex-text">{{room.room_no}}</div>
-                            </flexbox-item>
-                            <flexbox-item :span="1/4">
-                                <div class="flex-text">{{room.tenant}}</div>
-                            </flexbox-item>
-                            <flexbox-item :span="1/4">
-                                <div class="flex-text">{{room.expiry_date}}</div>
-                            </flexbox-item>
-                        </flexbox>
-                    </div>
-                </swipeout-item>
+                <checklist v-if="isDel" :title="'確認刪除後無法還原'" :options="objectList" v-model="objectListValue" @on-change="change"></checklist>
+                <cell v-else v-for="room in rooms" :title="'房客:'+room.tenant+'    樓層:'+room.floor+'   房號:'+room.room_no" :inline-desc="'租用期:   '+room.start_date+'~'+room.expiry_date" :link="'/room/'+room.id">
+                    <span v-if="room.tenant">出租中</span>
+                    <span v-else>無人租用</span>
+                </cell>
             </div>
         </scroller>
-
     </group>
-    <tabbar>
-        <x-button :text="submit001" @click.native="processButton001" type="primary"></x-button>
+    <tabbar v-if="isDel">
+        <tabbar-item v-if="isDel">
+            <i slot="icon" class="fa fa-reply fa-4x" aria-hidden="true" v-on:click="cancelButton"></i>
+            <span slot="label">取消</span>
+        </tabbar-item>
+        <tabbar-item>
+            <i slot="icon" class="fa fa-times fa-4x" aria-hidden="true" v-on:click="checkDel"></i>
+            <span slot="label">刪除房間</span>
+        </tabbar-item>
+    </tabbar>
+    <tabbar v-else>
+        <tabbar-item>
+            <i slot="icon" class="fa fa-plus fa-4x" aria-hidden="true"></i>
+            <span slot="label">新增房間</span>
+        </tabbar-item>
+        <tabbar-item>
+            <i slot="icon" class="fa fa-times fa-4x" aria-hidden="true" v-on:click="delButton"></i>
+            <span slot="label">刪除房間</span>
+        </tabbar-item>
+        <tabbar-item>
+            <i slot="icon" class="fa fa-cog fa-4x" aria-hidden="true" v-on:click="settingButton"></i>
+            <span slot="label">房屋設定</span>
+        </tabbar-item>
     </tabbar>
     <actionsheet v-model="show" :menus="menus" @on-click-menu="click" show-cancel></actionsheet>
     <actionsheet v-model="show1" :menus="menus1" @on-click-menu="click" show-cancel></actionsheet>
-
 </div>
 
 </template>
@@ -70,8 +54,7 @@
 <script>
 
 import {
-    Group, Swipeout, SwipeoutItem, SwipeoutButton, Cell,
-    Flexbox, FlexboxItem, Scroller, Actionsheet, Tabbar, XButton
+    Group, Swipeout, Cell, Scroller, Actionsheet, Tabbar, TabbarItem, XButton, Checklist
 }
 from 'vux'
 import {
@@ -86,14 +69,12 @@ export default {
         Cell,
         Group,
         Swipeout,
-        SwipeoutItem,
-        SwipeoutButton,
-        Flexbox,
-        FlexboxItem,
         Scroller,
         Actionsheet,
+        XButton,
         Tabbar,
-        XButton
+        TabbarItem,
+        Checklist
     },
     computed: {
         ...mapState([
@@ -108,25 +89,7 @@ export default {
     },
     methods: {
         ...mapActions(['getRooms']),
-            onButtonClick(type, id) {
-                switch (type) {
-                    case 'tenancy':
-                        this.show = true;
-                        break;
-                    case 'modify':
-                        this.$router.push({
-                            'path': '/room/' + id
-                        })
-                        break;
-                    case 'delete':
-                        this.show1 = true;
-                        break;
-                    default:
-                }
-            },
-            handleEvents(type) {
-                console.log('event: ', type)
-            },
+
             load(uuid) {
                 setTimeout(() => {
                     this.$refs.scroller.donePulldown()
@@ -138,10 +101,32 @@ export default {
             onDelete() {
                 this.showSuccess = true
             },
-            processButton001() {
+            settingButton() {
                 this.$router.push({
-                    'path': '/room'
+                    'path': '/house/housedetail'
                 })
+            },
+            checkDel() {
+                this.show1 = true;
+            },
+            cancelButton() {
+                this.isDel = false
+            },
+            delButton() {
+                const rooms = this.rooms
+                this.objectList = [];
+                let data
+                for (var k in rooms) {
+                    data = {
+                        key: rooms[k].id,
+                        value: '樓層:' + rooms[k].floor + '房號:' + rooms[k].room_no
+                    }
+                    this.objectList.push(data)
+                }
+                this.isDel = true
+            },
+            change(val) {
+                console.log('change', val)
             }
     },
     data() {
@@ -156,7 +141,9 @@ export default {
                 'title.noop': '你確定嗎?<br/><span style="color:#666;font-size:12px;">刪除後無法再撤銷.</span>',
                 delete: '<span style="color:red">刪除</span>'
             },
-            submit001: '新增'
+            isDel: false,
+            objectList: [],
+            objectListValue: [],
         }
     }
 }
