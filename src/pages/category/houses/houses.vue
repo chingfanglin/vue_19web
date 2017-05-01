@@ -91,9 +91,10 @@ export default {
                 }, 2000)
             },
             linkButton(houseid) {
-                this.houseid = houseid
+                this.$store.commit('GET_HOUSEID', houseid);
             },
             addButton() {
+                this.$store.commit('GET_HOUSEID', 0);
                 this.$router.push({
                     'path': '/house/housedetail'
                 })

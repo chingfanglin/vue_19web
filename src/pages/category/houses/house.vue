@@ -99,7 +99,7 @@ export default {
                 }, 2000)
             },
             linkButton(roomid) {
-                this.roomid = roomid
+                this.$store.commit('GET_ROOMID', roomid);
             },
             click(key) {
                 console.log(key)
@@ -107,7 +107,8 @@ export default {
             onDelete() {
                 this.showSuccess = true
             },
-            addButton(house_id) {
+            addButton() {
+                this.$store.commit('GET_ROOMID', 0);
                 this.$router.push({
                     'path': '/roomdetail'
                 })

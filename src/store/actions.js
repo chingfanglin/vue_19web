@@ -73,6 +73,12 @@ export default {
       }
     })
   },
+  getHouse_datail({
+    commit,
+    state
+  }) {
+
+  },
   getRooms({
     commit,
     state
@@ -87,42 +93,79 @@ export default {
         "room_no": 1,
         "tenant": "林書豪",
         "start_date": "2011/09/07",
-        "expiry_date": "2017/11/12"
+        "expiry_date": "2017/11/12",
+        "monthly_date": "12",
+        "deposit": 14000,
+        "monthly_rent": 7000,
+        "first_rent": 7500,
+        "isRent": true,
+        "notes": "籃球員"
+
       }, {
         "id": 2,
         "floor": 1,
         "room_no": 2,
         "tenant": "川普",
         "start_date": "2015/04/02",
-        "expiry_date": "2017/05/12"
+        "expiry_date": "2017/05/12",
+        "monthly_date": "25",
+        "deposit": 15000,
+        "monthly_rent": 7500,
+        "first_rent": 7500,
+        "isRent": true,
+        "notes": "總統"
       }, {
         "id": 3,
         "floor": 1,
         "room_no": 3,
         "tenant": "金城武",
         "start_date": "2011/01/27",
-        "expiry_date": "2017/05/12"
+        "expiry_date": "2017/05/12",
+        "monthly_date": "05",
+        "deposit": 15000,
+        "monthly_rent": 7500,
+        "first_rent": 7500,
+        "isRent": true,
+        "notes": "演員"
       }, {
         "id": 4,
         "floor": 2,
         "room_no": 1,
         "tenant": "林志玲",
         "start_date": "2013/11/12",
-        "expiry_date": "2017/05/12"
+        "expiry_date": "2017/05/12",
+        "monthly_date": "22",
+        "deposit": 13000,
+        "monthly_rent": 6500,
+        "first_rent": 6500,
+        "isRent": true,
+        "notes": "模特兒"
       }, {
         "id": 5,
         "floor": 2,
         "room_no": 2,
         "tenant": "漩渦鳴人",
         "start_date": "2013/09/22",
-        "expiry_date": "2017/05/12"
+        "expiry_date": "2017/05/12",
+        "monthly_date": "26",
+        "deposit": 12000,
+        "monthly_rent": 6000,
+        "first_rent": 6000,
+        "isRent": true,
+        "notes": "火影"
       }, {
         "id": 6,
         "floor": 3,
         "room_no": 1,
         "tenant": "",
         "start_date": "",
-        "expiry_date": ""
+        "expiry_date": "",
+        "monthly_date": "",
+        "deposit": 0,
+        "monthly_rent": 0,
+        "first_rent": 0,
+        "isRent": false,
+        "notes": ""
       }]
     })
     axios.get('/roomlist').then(response => {
