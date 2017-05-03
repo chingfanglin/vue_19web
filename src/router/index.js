@@ -8,6 +8,7 @@ import Housepage from '@/pages/category/houses/house'
 import Houses from '@/pages/category/houses/houses'
 import HouseDetail from '@/pages/category/houses/house_detail'
 import RoomDetail from '@/pages/category/rooms/room_detail'
+import Remind from '@/pages/category/remind/remind'
 import Account from '@/pages/account/account'
 import My from '@/pages/my/my'
 
@@ -74,6 +75,11 @@ export default new Router({
     path: '/account',
     name: 'account',
     component: Account
+  },
+  {
+    path: '/remind',
+    name: 'remind',
+    component: Remind    
   },
   {
     path: '/my',

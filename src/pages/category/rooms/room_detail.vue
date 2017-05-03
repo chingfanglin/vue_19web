@@ -16,10 +16,6 @@
     border-color: #ff4a00;
 }
 
-span {
-    font-size: 12px;
-}
-
 </style>
 
 <template>

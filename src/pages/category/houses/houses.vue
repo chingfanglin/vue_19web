@@ -1,10 +1,4 @@
-<style scoped>
 
-span {
-    font-size: 12px;
-}
-
-</style>
 
 <template>
 

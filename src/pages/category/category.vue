@@ -7,7 +7,7 @@
 }
 
 span {
-    font-size: 18px
+    font-size: 15px
 }
 
 .grid-center {
@@ -122,8 +122,8 @@ export default {
                 class_name: 'fa fa-envelope-open-o fa-2x'
             }, {
                 text: '提醒設定',
-                url: '',
-                class_name: 'fa fa-university fa-2x'
+                url: '/remind',
+                class_name: 'fa fa-bullhorn fa-2x'
             }, {
                 text: '租期',
                 url: '',

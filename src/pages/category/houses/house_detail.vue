@@ -15,11 +15,6 @@
     background: #ffffff no-repeat right bottom;
     border-color: #ff4a00;
 }
-
-span {
-    font-size: 12px;
-}
-
 </style>
 
 <template>
