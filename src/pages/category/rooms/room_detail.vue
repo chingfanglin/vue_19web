@@ -30,22 +30,32 @@
         <x-input title="每月租金" type="number" placeholder="" v-model="monthly_rent"></x-input>
         <x-input title="第一月租金" type="number" placeholder="" v-model="first_rent"></x-input>
         <datetime v-model="monthly_date" @on-change="change" :title="'每月付費日期'" format="DD"></datetime>
-        <x-switch :title="'出租'" v-model="state"></x-switch>
+        <x-switch :title="'出租'" v-model="state" @on-change="changeButton"></x-switch>
         <x-textarea v-model="notes" :max="100" :placeholder="'附註'"></x-textarea>
     </group>
 
     <tabbar>
         <tabbar-item v-if="isAddButton">
-            <i slot="icon" class="fa fa-plus fa-2x" aria-hidden="true" v-on:click="addButton"></i>
+            <i slot="icon" class="fa fa-plus" aria-hidden="true" v-on:click="addButton"></i>
             <span slot="label">新增</span>
         </tabbar-item>
         <tabbar-item v-else>
-            <i slot="icon" class="fa fa-wrench fa-2x" aria-hidden="true" v-on:click="modifyButton"></i>
-            <span slot="label">修改</span>
+            <i slot="icon" class="fa fa-floppy-o" aria-hidden="true" v-on:click="saveButton"></i>
+            <span slot="label">存檔</span>
         </tabbar-item>
     </tabbar>
     <actionsheet v-model="show" :menus="menus" @on-click-menu="click" show-cancel></actionsheet>
     <actionsheet v-model="show1" :menus="menus1" @on-click-menu="click" show-cancel></actionsheet>
+
+    <div v-transfer-dom>
+        <popup v-model="show2" height="100%">
+            <div class="popup1">
+                <group>
+                    <x-switch title="取消退租" v-model="state" @on-change="changeButton"></x-switch>
+                </group>
+            </div>
+        </popup>
+    </div>
 </div>
 
 </template>
@@ -58,12 +68,16 @@ import {
 }
 from 'vuex'
 import {
-    XInput, Group, Cell, Tabbar, TabbarItem, Datetime, XTextarea, XSwitch, Actionsheet
+    TransferDom, Popup, XInput, Group, Cell, Tabbar, TabbarItem, Datetime, XTextarea, XSwitch, Actionsheet
 }
 from 'vux'
 export default {
+    directives: {
+        TransferDom
+    },
     components: {
         HeaderBar,
+        Popup,
         XInput,
         Group,
         Cell,
@@ -111,9 +125,17 @@ export default {
             addButton() {
                 this.show1 = true;
             },
-            modifyButton() {
+            saveButton() {
                 this.show = true;
             },
+            changeButton(value) {
+                if (!value) {
+                    this.show2 = true;
+                } else {
+                    this.show2 = false;
+                }
+            },
+
             click(key) {
                 console.log(key)
             }
@@ -141,7 +163,8 @@ export default {
             menus1: {
                 'title.noop': '你確定嗎?',
                 add: '<span style="color:red">新增</span>'
-            }
+            },
+            show2: false,
         }
     }
 }

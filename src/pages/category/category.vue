@@ -117,37 +117,9 @@ export default {
                 url: '',
                 class_name: 'fa fa-address-card-o fa-2x'
             }, {
-                text: '訊息',
-                url: '',
-                class_name: 'fa fa-envelope-open-o fa-2x'
-            }, {
                 text: '提醒設定',
                 url: '/remind',
                 class_name: 'fa fa-bullhorn fa-2x'
-            }, {
-                text: '租期',
-                url: '',
-                class_name: 'fa fa-handshake-o fa-2x'
-            }, {
-                text: '維修',
-                url: '',
-                class_name: 'fa fa-wrench fa-2x'
-            }, {
-                text: '提醒',
-                url: '',
-                class_name: 'fa fa-id-badge fa-2x'
-            }, {
-                text: '收支',
-                url: '',
-                class_name: 'fa fa-usd fa-2x'
-            }, {
-                text: '廠商',
-                url: '',
-                class_name: 'fa fa-hand-spock-o fa-2x'
-            }, {
-                text: '評價',
-                url: '',
-                class_name: 'fa fa-hand-peace-o fa-2x'
             }]
         }
     }
