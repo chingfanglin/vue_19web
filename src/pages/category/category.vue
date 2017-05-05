@@ -120,6 +120,10 @@ export default {
                 text: '提醒設定',
                 url: '/remind',
                 class_name: 'fa fa-bullhorn fa-2x'
+            }, {
+                text: '註冊(測試用)',
+                url: '/reg_complete',
+                class_name: 'fa fa-bullhorn fa-2x'
             }]
         }
     }

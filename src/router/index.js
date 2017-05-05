@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/pages/login/login'
 import Registers from '@/pages/registers/registers'
+import Registers_complete from '@/pages/registers/registers_detail'
 import Home from '@/pages/home/home'
 import Category from '@/pages/category/category'
 import Housepage from '@/pages/category/houses/house'
@@ -29,6 +30,11 @@ export default new Router({
     path: '/reg',
     name: 'registers',
     component: Registers
+  },
+  {
+    path: '/reg_complete',
+    name: 'reg_complete',
+    component: Registers_complete
   },
   {
     path: '/home',
@@ -79,7 +85,7 @@ export default new Router({
   {
     path: '/remind',
     name: 'remind',
-    component: Remind    
+    component: Remind
   },
   {
     path: '/my',
