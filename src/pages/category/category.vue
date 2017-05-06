@@ -96,6 +96,9 @@ export default {
                     title: '提示訊息',
                     content: '請填寫詳細資料才可正常使用功能'
                 })
+                this.$router.push({
+                  'path': '/reg_complete'
+                })
                 return
             }
             if (url) {

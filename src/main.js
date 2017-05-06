@@ -6,13 +6,15 @@ import VueRouter from 'vue-router'
 import App from './App'
 import router from './router'
 import store from './store/'
-import { AlertPlugin, LoadingPlugin } from 'vux'
+import { AlertPlugin, LoadingPlugin, ToastPlugin } from 'vux'
 
 
 
 Vue.use(VueRouter)
 Vue.use(AlertPlugin)
+Vue.use(ToastPlugin)
 Vue.use(LoadingPlugin)
+
 
 FastClick.attach(document.body)
 Vue.config.productionTip = false
