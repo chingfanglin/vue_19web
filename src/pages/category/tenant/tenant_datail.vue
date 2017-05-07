@@ -1,18 +1,17 @@
 
-
 <template>
   <div style="test">
     <header-bar :showBackButton="true"></header-bar>
     <scroller lock-x ref="scrollerEvent" :height="-95+'px'">
       <div class="box2">
-        <x-input title="系統名稱" type="text" placeholder="請輸入系統名稱" v-model="system_name"></x-input>
-        <x-input title="姓氏" type="text" placeholder="請輸入姓氏" v-model="last_name"></x-input>
-        <x-input title="姓名" type="text" placeholder="請輸入姓名" v-model="first_name"></x-input>
+        <x-input title="姓名" type="text" placeholder="請輸入姓名" v-model="username"></x-input>
         <x-input title="電話" type="number" placeholder="請輸入電話" v-model="local_phone"></x-input>
         <x-input title="手機" type="number" placeholder="請輸入手機" v-model="cell_phone"></x-input>
         <x-input title="信箱" name="email" placeholder="請輸入信箱" v-model="email" is-type="email" ref="email"></x-input>
-        <x-input title="密碼" type="password" placeholder="" v-model="password" :min="6" :max="6" @on-change="change"></x-input>
-        <x-input title="確認密碼" v-model="confirm_password" type="password" placeholder="" :equal-with="password" ref="confirm_password"></x-input>
+        <x-input title="學校" type="text" placeholder="請輸入學校" v-model="school"></x-input>
+        <x-input title="科系" type="text" placeholder="請輸入科系" v-model="department"></x-input>
+        <x-input title="公司" type="text" placeholder="請輸入公司" v-model="company"></x-input>
+        <x-input title="職務" type="text" placeholder="請輸入職務" v-model="duties"></x-input>
         <group :title="'性別'">
           <radio :options="sex_radio" v-model="sex"></radio>
         </group>
@@ -42,7 +41,7 @@
     mapActions
   }
   from 'vuex'
-  import HeaderBar from '../../components/header.vue'
+  import HeaderBar from '../../../components/header.vue'
   export default {
     components: {
       HeaderBar,
@@ -59,23 +58,13 @@
         console.log('change', value)
       },
       checkValid() {
-        const systemName = this.system_name
-        const lastName = this.last_name
-        const firstName = this.first_name
+        const username = this.username
         const cellPhone = this.cell_phone
         const localPhone = this.local_phone
         const email = this.email
-        const password = this.password
-        const confirmPassword = this.confirm_password
         let check = false
   
-        if (!systemName) {
-          check = true
-        } else
-        if (!lastName) {
-          check = true
-        } else
-        if (!firstName) {
+        if (!username) {
           check = true
         } else
         if (!cellPhone) {
@@ -85,12 +74,6 @@
           check = true
         } else
         if (!email || !this.$refs.email.valid) {
-          check = true
-        } else
-        if (!password) {
-          check = true
-        } else
-        if (!confirmPassword || !this.$refs.confirm_password.valid) {
           check = true
         }
         return check
@@ -106,14 +89,11 @@
   
         let options = {
           SystemName: this.system_name,
-          LastName: this.last_name,
-          FirstName: this.first_name,
+          username: this.username,
           Sex: this.sex,
           Cellphone: this.cell_phone,
           LocalPhone: this.local_phone,
-          email: this.email,
-          ConfirmPassword: this.password,
-          Password: this.confirm_password
+          email: this.email
         }
   
         const router = this.$router
@@ -148,15 +128,15 @@
           key: 'A302',
           value: '女'
         }],
-        system_name: '',
-        last_name: '',
-        first_name: '',
+        username: '',
         sex: 'A301',
         cell_phone: '',
         local_phone: '',
         email: '',
-        password: '',
-        confirm_password: ''
+        school: '',
+        department: '',
+        company: '',
+        duties: ''
       }
     }
   }

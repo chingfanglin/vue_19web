@@ -11,9 +11,10 @@ const state = {
   userInfo: [],
   sliders: [],
   houses: [],
-  houseid:0,
+  houseid: 0,
   rooms: [],
-  roomid: 0
+  roomid: 0,
+  tenant: []
 }
 
 export default new Vuex.Store({

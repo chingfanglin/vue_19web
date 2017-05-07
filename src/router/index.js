@@ -2,13 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/pages/login/login'
 import Registers from '@/pages/registers/registers'
-import Registers_complete from '@/pages/registers/registers_detail'
+import RegistersComplete from '@/pages/registers/registers_detail'
 import Home from '@/pages/home/home'
 import Category from '@/pages/category/category'
 import Housepage from '@/pages/category/houses/house'
 import Houses from '@/pages/category/houses/houses'
 import HouseDetail from '@/pages/category/houses/house_detail'
 import RoomDetail from '@/pages/category/rooms/room_detail'
+import Tenant from '@/pages/category/tenant/tenant'
+import TenantDetail from '@/pages/category/tenant/tenant_datail'
 import Remind from '@/pages/category/remind/remind'
 import Account from '@/pages/account/account'
 import My from '@/pages/my/my'
@@ -34,7 +36,7 @@ export default new Router({
   {
     path: '/reg_complete',
     name: 'reg_complete',
-    component: Registers_complete
+    component: RegistersComplete
   },
   {
     path: '/home',
@@ -76,6 +78,21 @@ export default new Router({
     path: '/roomdetail/:id',
     name: 'roomdetail',
     component: RoomDetail
+  },
+  {
+    path: '/tenant',
+    name: 'Tenant',
+    component: Tenant
+  },
+  {
+    path: '/tenantdetail',
+    name: 'tenantdetail',
+    component: TenantDetail
+  },
+  {
+    path: '/tenantdetail/:id',
+    name: 'tenantdetail',
+    component: TenantDetail
   },
   {
     path: '/account',

@@ -7,8 +7,8 @@
       <scroller lock-x scrollbar-y :scrollbarY="false" use-pulldown @on-pulldown-loading="load" enable-horizontal-swiping ref="scroller" :height="-115+'px'">
         <div class="box2">
           <checklist v-if="isDel" :title="'確認刪除後無法還原'" :options="objectList" v-model="objectListValue" @on-change="change"></checklist>
-          <div v-else slot="content" v-for="house in houses" class="demo-content vux-1px-tb" v-on:click="linkButton(house.id)">
-            <cell :title="house.name" :inline-desc="house.address" :link="'/housepage/'+house.id"></cell>
+          <div v-else slot="content" v-for="user in tenant" class="demo-content vux-1px-tb" v-on:click="linkButton(user.id)">
+            <cell :title="user.name" :inline-desc="'手機: '+user.mobile+' 信箱: '+user.email" :link="'/tenantdetail/'+user.id"></cell>
           </div>
         </div>
       </scroller>
@@ -26,11 +26,11 @@
     <tabbar v-else>
       <tabbar-item>
         <i slot="icon" class="fa fa-plus fa-4x" aria-hidden="true" v-on:click="addButton"></i>
-        <span slot="label">新增房屋</span>
+        <span slot="label">新增房客</span>
       </tabbar-item>
       <tabbar-item>
         <i slot="icon" class="fa fa-trash fa-4x" aria-hidden="true" v-on:click="delButton"></i>
-        <span slot="label">刪除房屋</span>
+        <span slot="label">刪除房客</span>
       </tabbar-item>
     </tabbar>
     <actionsheet v-model="show1" :menus="menus1" @on-click-menu="click" show-cancel></actionsheet>
@@ -38,9 +38,7 @@
 </template>
 
 <script>
-  import {
-    Group,
-    Cell,
+  import {Group, Cell,
     Scroller,
     Tabbar,
     TabbarItem,
@@ -71,19 +69,16 @@
       Actionsheet
     },
     computed: {
-      ...mapState([
-        'houses',
-        'houseid'
-      ])
+      ...mapState([ 'tenant' ])
     },
     mounted() {
-      this.getHouses()
+      this.getTenant()
       this.$nextTick(() => {
         this.$refs.scroller.reset()
       })
     },
     methods: {
-      ...mapActions(['getHouses']),
+      ...mapActions(['getTenant']),
       load(uuid) {
         setTimeout(() => {
           this.$refs.scroller.donePulldown()
@@ -93,9 +88,9 @@
         this.$store.commit('GET_HOUSEID', houseid)
       },
       addButton() {
-        this.$store.commit('GET_HOUSEID', 0)
+        //this.$store.commit('GET_HOUSEID', 0)
         this.$router.push({
-          'path': '/house/housedetail'
+          'path': '/tenantdetail'
         })
       },
       cancelButton() {

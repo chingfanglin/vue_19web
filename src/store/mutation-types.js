@@ -12,4 +12,6 @@ export const GET_HOUSEID = 'GET_HOUSEID'
 
 export const GET_ROOMS = 'GET_ROOMS'
 
+export const GET_TENANT = 'GET_TENANT'
+
 export const GET_ROOMID = 'GET_ROOMID'
