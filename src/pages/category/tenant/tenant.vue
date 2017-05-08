@@ -8,28 +8,28 @@
         <div class="box2">
           <checklist v-if="isDel" :title="'確認刪除後無法還原'" :options="objectList" v-model="objectListValue" @on-change="change"></checklist>
           <div v-else slot="content" v-for="user in tenant" class="demo-content vux-1px-tb" v-on:click="linkButton(user.id)">
-            <cell :title="user.name" :inline-desc="'手機: '+user.mobile+' 信箱: '+user.email" :link="'/tenantdetail/'+user.id"></cell>
+            <cell :title="user.name" :inline-desc="'手機: '+user.mobile+' 信箱: '+user.email" :link="'/tenantdetail'"></cell>
           </div>
         </div>
       </scroller>
     </group>
     <tabbar v-if="isDel">
       <tabbar-item>
-        <i slot="icon" class="fa fa-reply fa-4x" aria-hidden="true" v-on:click="cancelButton"></i>
+        <i slot="icon" class="fa fa-reply" aria-hidden="true" v-on:click="cancelButton"></i>
         <span slot="label">取消</span>
       </tabbar-item>
       <tabbar-item>
-        <i slot="icon" class="fa fa-trash fa-4x" aria-hidden="true" v-on:click="checkDel"></i>
-        <span slot="label">刪除房屋</span>
+        <i slot="icon" class="fa fa-user-times" aria-hidden="true" v-on:click="checkDel"></i>
+        <span slot="label">確認刪除</span>
       </tabbar-item>
     </tabbar>
     <tabbar v-else>
       <tabbar-item>
-        <i slot="icon" class="fa fa-plus fa-4x" aria-hidden="true" v-on:click="addButton"></i>
+        <i slot="icon" class="fa fa-user-plus" aria-hidden="true" v-on:click="addButton"></i>
         <span slot="label">新增房客</span>
       </tabbar-item>
       <tabbar-item>
-        <i slot="icon" class="fa fa-trash fa-4x" aria-hidden="true" v-on:click="delButton"></i>
+        <i slot="icon" class="fa fa-user-times" aria-hidden="true" v-on:click="delButton"></i>
         <span slot="label">刪除房客</span>
       </tabbar-item>
     </tabbar>
@@ -69,7 +69,7 @@
       Actionsheet
     },
     computed: {
-      ...mapState([ 'tenant' ])
+      ...mapState([ 'tenant', 'tenantid' ])
     },
     mounted() {
       this.getTenant()
@@ -84,11 +84,11 @@
           this.$refs.scroller.donePulldown()
         }, 2000)
       },
-      linkButton(houseid) {
-        this.$store.commit('GET_HOUSEID', houseid)
+      linkButton(tenantid) {
+        this.$store.commit('GET_TENANTID', tenantid)
       },
       addButton() {
-        //this.$store.commit('GET_HOUSEID', 0)
+        this.$store.commit('GET_TENANTID', 0)
         this.$router.push({
           'path': '/tenantdetail'
         })
@@ -97,13 +97,13 @@
         this.isDel = false
       },
       delButton() {
-        const houses = this.houses
+        const tenant = this.tenant
         this.objectList = []
         let data
-        for (var k in houses) {
+        for (var k in tenant) {
           data = {
-            key: houses[k].id,
-            value: houses[k].name
+            key: tenant[k].id,
+            value: tenant[k].name
           }
           this.objectList.push(data)
         }

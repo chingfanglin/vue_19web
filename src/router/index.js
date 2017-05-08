@@ -90,11 +90,6 @@ export default new Router({
     component: TenantDetail
   },
   {
-    path: '/tenantdetail/:id',
-    name: 'tenantdetail',
-    component: TenantDetail
-  },
-  {
     path: '/account',
     name: 'account',
     component: Account

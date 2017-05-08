@@ -21,7 +21,7 @@
     <tabbar>
       <tabbar-item>
         <i slot="icon" class="fa fa-floppy-o" aria-hidden="true" v-on:click="saveButton"></i>
-        <span slot="label">存檔</span>
+        <span slot="label">完成</span>
       </tabbar-item>
     </tabbar>
   </div>

@@ -7,7 +7,8 @@ import {
   GET_HOUSEID,
   GET_ROOMS,
   GET_ROOMID,
-  GET_TENANT
+  GET_TENANT,
+  GET_TENANTID
 } from './mutation-types.js'
 
 export default {
@@ -37,5 +38,8 @@ export default {
   },
   [GET_TENANT](state, list) {
     state.tenant = list
+  },
+  [GET_TENANTID](state, int) {
+    state.tenantid = int
   }
 }

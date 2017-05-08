@@ -5,5 +5,6 @@ export default {
   houseid: state => state.houseid,
   rooms: state => state.rooms,
   roomid: state => state.roomid,
-  tenant: state => state.tenant
+  tenant: state => state.tenant,
+  tenantid: state => state.tenantid
 }

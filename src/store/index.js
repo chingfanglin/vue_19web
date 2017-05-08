@@ -14,7 +14,8 @@ const state = {
   houseid: 0,
   rooms: [],
   roomid: 0,
-  tenant: []
+  tenant: [],
+  tenantid: 0
 }
 
 export default new Vuex.Store({

@@ -38,7 +38,7 @@
   from 'vux'
   import axios from 'axios'
   import {
-    mapActions
+    mapState
   }
   from 'vuex'
   import HeaderBar from '../../../components/header.vue'
@@ -52,10 +52,32 @@
       Radio,
       Scroller
     },
+    computed: {
+      ...mapState([
+        'tenant',
+        'tenantid'
+      ])
+    },
+    mounted() {
+      this.checkTenantID()
+    },
     methods: {
-      ...mapActions(['setRegistered']),
       change(value) {
         console.log('change', value)
+      },
+      checkTenantID() {
+        const tenantid = this.tenantid
+        let tenantDetail
+        this.cell_phone
+        if (tenantid) {
+          tenantDetail = this.tenant.filter((currentValue, index, arr) =>
+          currentValue.id === tenantid)
+          if (tenantDetail) {
+            this.username = tenantDetail[0].name
+            this.cell_phone = tenantDetail[0].mobile
+            this.isAddButton = false
+          }
+        }
       },
       checkValid() {
         const username = this.username
