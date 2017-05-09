@@ -22,6 +22,10 @@
         <i slot="icon" class="fa fa-floppy-o" aria-hidden="true" v-on:click="saveButton"></i>
         <span slot="label">存檔</span>
       </tabbar-item>
+       <tabbar-item>
+        <i slot="icon" class="fa fa-balance-scale" aria-hidden="true" v-on:click="rentButton"></i>
+        <span slot="label">房租</span>
+      </tabbar-item>
     </tabbar>
   </div>
 </template>
@@ -74,7 +78,11 @@
           currentValue.id === tenantid)
           if (tenantDetail) {
             this.username = tenantDetail[0].name
+            this.email = tenantDetail[0].email
             this.cell_phone = tenantDetail[0].mobile
+            this.school = tenantDetail[0].school
+            this.department = tenantDetail[0].department
+            this.local_phone = tenantDetail[0].local_phone
             this.isAddButton = false
           }
         }
@@ -99,6 +107,9 @@
           check = true
         }
         return check
+      },
+      rentButton() {
+
       },
       saveButton() {
         if (this.checkValid()) {

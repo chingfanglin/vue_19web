@@ -8,7 +8,7 @@
         <div class="box2">
           <checklist v-if="isDel" :title="'確認刪除後無法還原'" :options="objectList" v-model="objectListValue" @on-change="change"></checklist>
           <div v-else slot="content" v-for="house in houses" class="demo-content vux-1px-tb" v-on:click="linkButton(house.id)">
-            <cell :title="house.name" :inline-desc="house.address" :link="'/housepage/'+house.id"></cell>
+            <cell :title="house.name" :inline-desc="house.address" :link="'/housepage'"></cell>
           </div>
         </div>
       </scroller>

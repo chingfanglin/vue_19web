@@ -12,7 +12,8 @@ import RoomDetail from '@/pages/category/rooms/room_detail'
 import Tenant from '@/pages/category/tenant/tenant'
 import TenantDetail from '@/pages/category/tenant/tenant_datail'
 import Remind from '@/pages/category/remind/remind'
-import Account from '@/pages/account/account'
+import Report from '@/pages/report/report'
+
 import My from '@/pages/my/my'
 
 Vue.use(Router)
@@ -65,17 +66,12 @@ export default new Router({
     component: Housepage
   },
   {
-    path: '/housepage/:id',
-    name: 'housepage',
-    component: Housepage
-  },
-  {
     path: '/roomdetail',
     name: 'roomdetail',
     component: RoomDetail
   },
   {
-    path: '/roomdetail/:id',
+    path: '/roomdetail',
     name: 'roomdetail',
     component: RoomDetail
   },
@@ -90,9 +86,9 @@ export default new Router({
     component: TenantDetail
   },
   {
-    path: '/account',
-    name: 'account',
-    component: Account
+    path: '/report',
+    name: 'report',
+    component: Report
   },
   {
     path: '/remind',

@@ -15,7 +15,7 @@
             <div class="box2">
                 <checklist v-if="isDel" :title="'確認刪除後無法還原'" :options="objectList" v-model="objectListValue" @on-change="change"></checklist>
                 <div v-else v-for="room in rooms" v-on:click="linkButton(room.id)">
-                    <cell :title="'房客:'+room.tenant+'    樓層:'+room.floor+'   房號:'+room.room_no" :inline-desc="'租用期:   '+room.start_date+'~'+room.expiry_date" :link="'/roomdetail/'+room.id">
+                    <cell :title="'房客:'+room.tenant+'    樓層:'+room.floor+'   房號:'+room.room_no" :inline-desc="'租用期:   '+room.start_date+'~'+room.expiry_date" :link="'/roomdetail'">
                         <span v-if="room.tenant">出租中</span>
                         <span v-else>無人租用</span>
                     </cell>
