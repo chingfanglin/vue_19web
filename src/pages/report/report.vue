@@ -17,32 +17,9 @@
         </flexbox>
       </group>
       <tab :line-width=2 active-color='#fc378c' v-model="index">
-        <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}</tab-item>
+        <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @on-item-click="onItemClick(item)" :key="index">{{item}}</tab-item>
       </tab>
-      <swiper v-model="index" height="1360px" :show-dots="false">
-        <swiper-item v-for="(item, index) in list2" :key="index">
-          <div v-if="item==='收入'">
-            <scroller lock-x scrollbar-y use-pulldown @on-pulldown-loading="load" enable-horizontal-swiping ref="scroller" :height="-215+'px'">
-              <cell :title="'2017/04/30'" is-link :border-intent="false" :arrow-direction="showContent002 ? 'up' : 'down'" @click.native="showContent002 = !showContent002"></cell>
-              <template v-if="showContent002">
-                <form-preview :header-label="'付款金额'" header-value="¥7500.00" :body-items="list" :footer-buttons="buttons1"></form-preview>
-              </template>
-              <cell :title="'2017/04/30'" is-link :border-intent="false" :arrow-direction="showContent002 ? 'up' : 'down'" @click.native="showContent002 = !showContent002"></cell>
-              <cell :title="'2017/04/30'" is-link :border-intent="false" :arrow-direction="showContent002 ? 'up' : 'down'" @click.native="showContent002 = !showContent002"></cell>
-              <cell :title="'2017/04/30'" is-link :border-intent="false" :arrow-direction="showContent002 ? 'up' : 'down'" @click.native="showContent002 = !showContent002"></cell>
-              <cell :title="'2017/04/30'" is-link :border-intent="false" :arrow-direction="showContent002 ? 'up' : 'down'" @click.native="showContent002 = !showContent002"></cell>
-              <cell :title="'2017/04/30'" is-link :border-intent="false" :arrow-direction="showContent002 ? 'up' : 'down'" @click.native="showContent002 = !showContent002"></cell>
-            </scroller>
-          </div>
-          <div v-if="item==='逾期'">
-  
-          </div>
-          <div v-if="item==='支出'">
-  
-          </div>
-  
-        </swiper-item>
-      </swiper>
+      <Income v-if="showContent001"></Income>
     </div>
     <footer-bar></footer-bar>
   </div>
@@ -51,8 +28,8 @@
 <script>
 import HeaderBar from '../../components/header.vue'
 import FooterBar from '../../components/footer.vue'
-
-import { Tab, TabItem, Swiper, SwiperItem, Cell, CellBox, Flexbox, FlexboxItem, FormPreview, Datetime, Group, XButton, Scroller } from 'vux'
+import Income from '../../pages/report/income.vue'
+import { Tab, TabItem, Swiper, SwiperItem, Flexbox, FlexboxItem, Datetime, Group, XButton } from 'vux'
 const list = () => ['收入', '逾期', '支出']
 
 export default {
@@ -62,18 +39,23 @@ export default {
     Swiper,
     SwiperItem,
     HeaderBar,
-    Cell,
-    CellBox,
-    FormPreview,
     FooterBar,
     Flexbox,
     FlexboxItem,
     XButton,
     Datetime,
     Group,
-    Scroller
+    Income
   },
   methods: {
+    onItemClick(index) {
+      if (index === '收入') {
+        this.$data.showContent001 = true
+      } else {
+        this.$data.showContent001 = false
+      }
+      console.log('on item click:', index)
+    },
     change1(value) {
       console.log('change', value)
     },
@@ -102,6 +84,7 @@ export default {
       list2: list(),
       demo2: '收入',
       index: 0,
+      showContent001: true,
       showContent002: false,
       list: [{
         label: '項目',
