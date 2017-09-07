@@ -1,8 +1,8 @@
 {
   "win32-x64-prod": {
     "readme": "Second release",
-    "update": "https://github.com/chingfanglin/vue_19web/raw/master/update/test",
-    "install": "https://github.com//chingfanglin/vue_19web/raw/master/update/test/STARS SLOT TEST Setup 1.0.1006.exe",
-    "version": "1.0.1006"
+    "update": "https://github.com/chingfanglin/vue_19web/releases/download/v1.0.1007/",
+    "install": "https://github.com/chingfanglin/vue_19web/releases/download/v1.0.1007/STARS.SLOT.TEST.Setup.1.0.1007.exe",
+    "version": "1.0.1007"
   }
 }
